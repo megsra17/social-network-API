@@ -3,7 +3,7 @@ const thoughtsController = require("../controllers/thoughtsController");
 
 router.post("/", thoughtsController.create);
 router.get("/", thoughtsController.find);
-router.get("/", thoughtsController.findOne);
+router.get("/:id", thoughtsController.findOne);
 router.put("/update/:id", thoughtsController.update);
 router.delete("/delete/:id", thoughtsController.delete);
 

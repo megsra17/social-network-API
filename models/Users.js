@@ -22,14 +22,14 @@ const UsersSchema = new mongoose.Schema(
     thoughts: [
       {
         type: mongoose.Schema.ObjectId,
-        ref: "thoughts",
+        ref: "Thoughts",
       },
     ],
 
     friends: [
       {
         type: mongoose.Schema.ObjectId,
-        ref: "users",
+        ref: "Users",
       },
     ],
   },
