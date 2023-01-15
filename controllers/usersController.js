@@ -1,11 +1,10 @@
-const { json } = require("body-parser");
-const { User, Thoughts } = require("../models");
+const { Users, Thoughts } = require("../models");
 const { findById } = require("../models/Thoughts");
 
 module.exports = {
   create: async function (req, res) {
     try {
-      const result = await User.create(req.body);
+      const result = await Users.create(req.body);
       res.json(result);
     } catch (err) {
       res.status(500).json(err);
@@ -13,7 +12,7 @@ module.exports = {
   },
   find: async function (req, res) {
     try {
-      const result = await User.find();
+      const result = await Users.find();
       res.json(result);
     } catch (err) {
       res.status(500).json(err);
@@ -21,7 +20,7 @@ module.exports = {
   },
   findOne: async function (req, res) {
     try {
-      const result = await findById({ _id: req.params.id });
+      const result = await Users.findById({ _id: req.params.id });
       res.json(result);
     } catch (err) {
       res.status(500).json(err);
@@ -29,7 +28,7 @@ module.exports = {
   },
   update: async function (req, res) {
     try {
-      const result = await User.findByIdAndUpdate(req.params.id, req.body, {
+      const result = await Users.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
       });
       res.json(result);
@@ -39,11 +38,11 @@ module.exports = {
   },
   delete: async function (req, res) {
     try {
-      const user = await User.findById(req.params.id);
+      const user = await Users.findById(req.params.id);
       const thoughtsResult = await Thoughts.deleteMany({
         _id: { $in: user.thoughts },
       });
-      const result = await User.findByIdAndDelete(req.params.id);
+      const result = await Users.findByIdAndDelete(req.params.id);
       res.json(result);
     } catch (err) {
       res.status(500).json(err);
@@ -52,7 +51,7 @@ module.exports = {
   addFriend: async function (req, res) {
     const userId = req.params.id;
     const newFriend = req.body.addFriend;
-    const updateUser = await User.findByIdAndUpdate(
+    const updateUser = await Users.findByIdAndUpdate(
       userId,
       { $addToSet: [newFriend] },
       { new: true }
@@ -61,7 +60,7 @@ module.exports = {
   removeFriend: async function (req, res) {
     const userId = req.params.id;
     const friendToRemove = req.body.removeFriend;
-    const updateUser = await User.findByIdAndUpdate(
+    const updateUser = await Users.findByIdAndUpdate(
       userId,
       { $pull: { friends: { $eq: friendToRemove } } },
       { new: true }

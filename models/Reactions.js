@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { Reactions } = require(".");
 
 const ReactionsSchema = new mongoose.Schema(
   {
@@ -9,12 +8,12 @@ const ReactionsSchema = new mongoose.Schema(
     },
     reactionBody: {
       type: String,
-      require: true,
+      require: "Needs reaction",
       maxlength: 280,
     },
     username: {
       type: String,
-      required: true,
+      required: "Needs username",
     },
     createdAt: {
       type: Date,

@@ -5,7 +5,7 @@ const ThoughtsSchema = new mongoose.Schema(
   {
     thoughtText: {
       type: String,
-      required: true,
+      required: "needs thought text",
       minlength: 1,
       maxlength: 280,
     },
@@ -16,7 +16,7 @@ const ThoughtsSchema = new mongoose.Schema(
     },
     username: {
       type: String,
-      required: true,
+      required: "needs username",
     },
     reactions: [reactionSchema],
   },

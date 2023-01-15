@@ -1,9 +1,9 @@
-const { User, Thoughts } = require("../models");
+const { Users, Thoughts } = require("../models");
 
 module.exports = {
   create: async function (req, res) {
     try {
-      const result = await User.create(req.body);
+      const result = await Thoughts.create(req.body);
       res.json(result);
     } catch (err) {
       res.status(500).json(err);
