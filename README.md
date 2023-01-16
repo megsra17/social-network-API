@@ -6,11 +6,10 @@ This program builds an API for a social network web application where users can 
 
 
 ## Technologies Used
-MongoDB database
-Mongoose ODM
-Express.js
+MongoDB database,
+Mongoose ODM,
+Express.js,
 JavaScript
-Native JavaScript Date object to format timestamps
 
 ## Questions
 
