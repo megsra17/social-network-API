@@ -49,21 +49,31 @@ module.exports = {
     }
   },
   addFriend: async function (req, res) {
-    const userId = req.params.id;
-    const newFriend = req.body.addFriend;
-    const updateUser = await Users.findByIdAndUpdate(
-      userId,
-      { $addToSet: [newFriend] },
-      { new: true }
-    );
+    try {
+      const userId = req.params.userId;
+      const newFriend = req.params.friendId;
+      const updateUser = await Users.findByIdAndUpdate(
+        userId,
+        { $addToSet: { friends: newFriend } },
+        { new: true }
+      );
+      res.json(updateUser);
+    } catch (err) {
+      res.status(500).json(err);
+    }
   },
   removeFriend: async function (req, res) {
-    const userId = req.params.id;
-    const friendToRemove = req.body.removeFriend;
-    const updateUser = await Users.findByIdAndUpdate(
-      userId,
-      { $pull: { friends: { $eq: friendToRemove } } },
-      { new: true }
-    );
+    try {
+      const userId = req.params.userId;
+      const friendToRemove = req.params.friendId;
+      const updateUser = await Users.findByIdAndUpdate(
+        userId,
+        { $pull: { friends: { $eq: friendToRemove } } },
+        { new: true }
+      );
+      res.json(updateUser);
+    } catch (err) {
+      res.status(500).json(err);
+    }
   },
 };

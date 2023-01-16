@@ -4,7 +4,7 @@ const ReactionsSchema = new mongoose.Schema(
   {
     reactionId: {
       type: mongoose.Schema.Types.ObjectId,
-      defualts: () => new mongoose.Types.ObjectId(),
+      default: () => new mongoose.Types.ObjectId(),
     },
     reactionBody: {
       type: String,
@@ -18,13 +18,14 @@ const ReactionsSchema = new mongoose.Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (timeStamp) => formatDate(timeStamp),
+      get: (timeStamp) => new Date(),
     },
   },
   {
     toJSON: {
       getters: true,
     },
+    id: false,
   }
 );
 

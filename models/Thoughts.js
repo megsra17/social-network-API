@@ -12,7 +12,7 @@ const ThoughtsSchema = new mongoose.Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      //add date
+      get: (timeStamp) => new Date(),
     },
     username: {
       type: String,
